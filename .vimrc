@@ -130,7 +130,7 @@ Plug 'tpope/vim-fugitive', { 'for': codingFT }
 "Plug 'airblade/vim-gitgutter', { 'for': codingFT }
 
 " golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': codingFT[1] }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': codingFT[0] }
 
 " Python 格式化代碼
 Plug 'ambv/black', { 'for': codingFT[1] }
