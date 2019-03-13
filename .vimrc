@@ -130,8 +130,8 @@ Plug 'scrooloose/syntastic', { 'for': codingFT }
 Plug 'tpope/vim-surround'
 
 " Git
-Plug 'tpope/vim-fugitive', { 'for': codingFT }
-Plug 'airblade/vim-gitgutter', { 'for': codingFT }
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': codingFT[0] }
@@ -276,3 +276,9 @@ if &term =~ "xterm"
     let &t_EI = "\<Esc>[2 q"
 endif
 
+" 修改存檔自動上傳 github
+augroup vimrc
+    " 清除 vimrc 组全部的的自動命令
+    autocmd!
+    autocmd BufWritePost .vimrc :echo 123
+augroup END
