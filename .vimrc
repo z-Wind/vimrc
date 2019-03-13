@@ -130,8 +130,8 @@ Plug 'scrooloose/syntastic', { 'for': codingFT }
 Plug 'tpope/vim-surround'
 
 " Git
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive', { 'for': codingFT }
+Plug 'airblade/vim-gitgutter', { 'for': codingFT }
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': codingFT[0] }
@@ -280,7 +280,12 @@ endif
 augroup vimrc
     " 清除 vimrc 组全部的的自動命令
     autocmd!
-    let nowDir = getcwd()
-    nmap <Leader>cd :lcd %:p:h<CR>
-    "autocmd BufWritePost *.vimrc :Git commit -am autoUpload | Git push
+    autocmd BufWritePost *.vimrc let nowDir = getcwd()
+    autocmd BufWritePost *.vimrc let vimDir = fnamemodify(resolve(expand('%:p')),':h')
+    autocmd BufWritePost *.vimrc execute ':lcd ' . vimDir
+    autocmd BufWritePost *.vimrc echom 'nowDir:' . nowDir
+    autocmd BufWritePost *.vimrc echom 'vimDir:' . vimDir
+    autocmd BufWritePost *.vimrc :!git commit -am autoUpload  
+    autocmd BufWritePost *.vimrc :!git push
+    autocmd BufWritePost *.vimrc execute ':lcd ' . nowDir
 augroup END
