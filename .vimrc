@@ -280,5 +280,6 @@ endif
 augroup vimrc
     " 清除 vimrc 组全部的的自動命令
     autocmd!
-    autocmd BufWritePost .vimrc ':Git commit -am modify | Git push'
+    "autocmd BufWritePost *.vimrc ':Git commit -am autoUpload | Git push'
+    autocmd BufWritePost *.vimrc :Git commit -am autoUpload | Git push
 augroup END
