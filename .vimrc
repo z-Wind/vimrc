@@ -24,6 +24,8 @@ set ruler
 set showmode
 " 顯示目前指令
 set showcmd
+" 不自動斷行
+set nowrap
 
 " 保留個人設定的語法 Highlight
 syntax enable
@@ -124,10 +126,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'Valloric/YouCompleteMe'", { 'for': codingFT }
 " 語法檢查
 Plug 'scrooloose/syntastic', { 'for': codingFT }
+" 括號處理
+Plug 'tpope/vim-surround'
 
 " Git
 Plug 'tpope/vim-fugitive', { 'for': codingFT }
-"Plug 'airblade/vim-gitgutter', { 'for': codingFT }
+Plug 'airblade/vim-gitgutter', { 'for': codingFT }
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': codingFT[0] }
@@ -144,6 +148,7 @@ call plug#end()
 "===================================
 
 " vim-go settings
+let g:go_bin_path = $HOME."/go/bin"
 let g:go_fmt_command = "goimports"
 "let g:go_list_type = "quickfix"
 set completeopt-=preview
@@ -217,6 +222,16 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+"""小括號補齊，並將輸入游標左移一個字元
+""inoremap ( ()<LEFT>
+"""中括號補齊，並將輸入游標左移一個字元
+""inoremap [ []<LEFT>
+"""大括號補齊，並將輸入游標左移一個字元
+""inoremap { {}<LEFT><CR><CR><UP><TAB>
+"""單引號補齊，並將輸入游標左移一個字元
+""inoremap ' ''<LEFT>
+"""雙引號補齊，並將輸入游標左移一個字元
+""inoremap " ""<LEFT>
 
 " vim-go settings
 map <C-n> :lnext<CR>
@@ -240,7 +255,14 @@ nmap <Leader>w :Windows<CR>
 nmap <Leader>b :Buffers<CR>
 
 " ripgrep
-nmap <Leader>F :Rg<CR>
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --smart-case --no-ignore --hidden --follow --color=always
+  \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
+  \ -g "!*.{min.js,swp,o,zip}" 
+  \ -g "!{.git,node_modules,vendor}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+nmap <Leader>F :F<CR>
 
 
 "=============================
@@ -253,5 +275,4 @@ if &term =~ "xterm"
     let &t_SR = "\<Esc>[4 q"
     let &t_EI = "\<Esc>[2 q"
 endif
-
 
