@@ -280,5 +280,7 @@ endif
 augroup vimrc
     " 清除 vimrc 组全部的的自動命令
     autocmd!
-    autocmd BufWritePost *.vimrc :Git commit -am autoUpload | Git push
+    let nowDir = getcwd()
+    nmap <Leader>cd :lcd %:p:h<CR>
+    "autocmd BufWritePost *.vimrc :Git commit -am autoUpload | Git push
 augroup END
