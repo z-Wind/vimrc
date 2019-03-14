@@ -285,7 +285,7 @@ augroup vimrc
     autocmd BufWritePost *.vimrc execute ':lcd ' . vimDir
     autocmd BufWritePost *.vimrc echom 'nowDir:' . nowDir
     autocmd BufWritePost *.vimrc echom 'vimDir:' . vimDir
-    autocmd BufWritePost *.vimrc :!git commit -am autoUpload  
-    autocmd BufWritePost *.vimrc :!git push
+    autocmd BufWritePost *.vimrc silent '!git commit -am autoUpload'
+    autocmd BufWritePost *.vimrc silent '!git push'
     autocmd BufWritePost *.vimrc execute ':lcd ' . nowDir
 augroup END
