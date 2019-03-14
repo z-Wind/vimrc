@@ -273,7 +273,7 @@ nmap <Leader>F :F<CR>
 "=============================
 "
 " 插入模式為直條線，替代模式為下底線
-if &term =~ "xterm"
+if &term =~ "xterm|screen*"
     let &t_SI = "\<Esc>[6 q"
     let &t_SR = "\<Esc>[4 q"
     let &t_EI = "\<Esc>[2 q"
