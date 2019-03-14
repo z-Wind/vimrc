@@ -207,11 +207,12 @@ autocmd BufWritePre *.py execute ':Black'
 
 " vim
 let mapleader = ","
-nmap YY "+yy<CR>
-vmap Y "+y<CR>
-nmap P "+p<CR>
-vmap P "+p<CR>
-nmap <Leader>cd :lcd %:p:h<CR>
+nnoremap YY "+yy<CR>
+nnoremap Y "+y
+vnoremap Y "+y<CR>
+nnoremap P "+p<CR>
+vnoremap P "+p<CR>
+nnoremap <Leader>cd :lcd %:p:h<CR>
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qall! qall!
