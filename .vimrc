@@ -213,6 +213,8 @@ vnoremap Y "+y<CR>
 nnoremap P "+p<CR>
 vnoremap P "+p<CR>
 nnoremap <Leader>cd :lcd %:p:h<CR>
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>N :bN<CR>
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qall! qall!
