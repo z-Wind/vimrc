@@ -136,8 +136,9 @@ Plug 'airblade/vim-gitgutter', { 'for': codingFT }
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': codingFT[0] }
 
-" Python 格式化代碼
+" Python
 Plug 'ambv/black', { 'for': codingFT[1] }
+Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': codingFT[1] }
 
 " Initialize plugin system
 call plug#end()
@@ -196,6 +197,9 @@ let g:syntastic_style_warning_symbol = '⚠'
 
 " black
 autocmd BufWritePre *.py execute ':Black'
+
+" python-mode
+let g:pymode_python = 'python3'
 
 " gitgutter
 "set updatetime=100
@@ -279,16 +283,21 @@ if &term =~? "xterm" || &term =~? "screen.*"
     let &t_EI = "\<Esc>[2 q"
 endif
 
-" 修改存檔自動上傳 github
+" 上傳 github
+function! UploadGit()
+    let nowDir = getcwd()
+    let vimDir = fnamemodify(resolve(expand('%:p')),':h')
+    execute ':lcd ' . vimDir
+    echom 'nowDir:' . nowDir
+    echom 'vimDir:' . vimDir
+    silent !git commit -am autoUpload
+    silent !git push
+    execute ':lcd ' . nowDir
+endfunctin
+
 augroup vimrc
     " 清除 vimrc 组全部的的自動命令
     autocmd!
-    autocmd BufWritePost *.vimrc let nowDir = getcwd()
-    autocmd BufWritePost *.vimrc let vimDir = fnamemodify(resolve(expand('%:p')),':h')
-    autocmd BufWritePost *.vimrc execute ':lcd ' . vimDir
-    autocmd BufWritePost *.vimrc echom 'nowDir:' . nowDir
-    autocmd BufWritePost *.vimrc echom 'vimDir:' . vimDir
-    autocmd BufWritePost *.vimrc silent !git commit -am autoUpload
-    autocmd BufWritePost *.vimrc silent !git push
-    autocmd BufWritePost *.vimrc execute ':lcd ' . nowDir
+    " 修改後存檔自動上傳 github
+    autocmd BufWritePost *.vimrc call UploadGit()
 augroup END
