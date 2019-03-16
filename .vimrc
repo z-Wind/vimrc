@@ -138,7 +138,10 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': codingFT[0] }
 
 " Python
 Plug 'ambv/black', { 'for': codingFT[1] }
-Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': codingFT[1] }
+"Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': codingFT[1] }
+
+" Jinja2
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Initialize plugin system
 call plug#end()
@@ -293,7 +296,7 @@ function! UploadGit()
     silent !git commit -am autoUpload
     silent !git push
     execute ':lcd ' . nowDir
-endfunctin
+endfunction
 
 augroup vimrc
     " 清除 vimrc 组全部的的自動命令
