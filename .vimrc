@@ -185,6 +185,7 @@ let $FZF_DEFAULT_COMMAND = "rg --files --smart-case --no-ignore-vcs --hidden"
 " syntastic
 let g:syntastic_go_checkers = ['govet', 'golint', 'errcheck']
 let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_post_args='--ignore=E501,E128,E225'
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 let g:syntastic_always_populate_loc_list=1
