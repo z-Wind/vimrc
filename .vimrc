@@ -61,6 +61,8 @@ filetype on
 filetype indent on
 " 依檔案類型載入相關 plugin
 filetype plugin on
+" 依載入的檔案格式調整 fileformat
+set fileformats=unix,dos
 " 設定檔案類型
 set fileformat=unix
 
