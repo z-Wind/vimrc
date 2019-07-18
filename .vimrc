@@ -61,6 +61,8 @@ filetype on
 filetype indent on
 " 依檔案類型載入相關 plugin
 filetype plugin on
+" 設定檔案類型
+set fileformat=unix,dos
 
 " 輸入括號時，單獨顯示對應括號
 set showmatch
