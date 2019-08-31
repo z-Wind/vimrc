@@ -64,7 +64,15 @@ filetype plugin on
 " 依載入的檔案格式調整 fileformat
 set fileformats=unix,dos
 " 設定檔案類型
-set fileformat=unix
+" set fileformat=unix
+" 設定檔案編碼
+set encoding=utf-8
+set langmenu=zh_TW.UTF-8
+language message zh_TW.UTF-8
+" 依序自動偵測編碼
+" ucs-bom 是一種非常嚴格的編碼，幾乎沒有可能被誤判，故放在第一位
+" utf-8 也相當嚴格，現實生活中一般文件是幾乎不可能被誤判的，因此放在第二位
+set fileencodings=ucs-bom,utf-8,cp950,big5,euc-jp,euc-kr,latin1
 
 " 輸入括號時，單獨顯示對應括號
 set showmatch
