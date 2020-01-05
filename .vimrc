@@ -213,6 +213,7 @@ let g:syntastic_style_warning_symbol = '⚠'
 
 " black
 autocmd BufWritePre *.py execute ':Black'
+let g:black_linelength = 100
 
 " python-mode
 let g:pymode_python = 'python3'
