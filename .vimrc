@@ -314,9 +314,11 @@ function! UploadGit()
     let vimDir = fnamemodify(resolve(expand('%:p')),':h')
     let gitDir = "~/備份/vimrc"
     execute ':lcd ' . vimDir
+    echom '==========================================='
     echom 'nowDir:' . nowDir
     echom 'vimDir:' . vimDir
     echom 'gitDir:' . gitDir
+    echom '==========================================='
     !cp .vimrc ~/備份/vimrc
     execute ':lcd ' . gitDir 
     "silent !git commit -am autoUpload
