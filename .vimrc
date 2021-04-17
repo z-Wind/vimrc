@@ -321,7 +321,7 @@ function! UploadGit()
     !git commit -am autoUpload
     !git push
     execute ':lcd ' . nowDir
-    " redraw!
+    redraw!
 endfunction
 
 augroup vimrc
