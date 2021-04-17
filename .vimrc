@@ -316,6 +316,7 @@ function! UploadGit()
     execute ':lcd ' . vimDir
     echom 'nowDir:' . nowDir
     echom 'vimDir:' . vimDir
+    echom 'gitDir:' . gitDir
     !cp .vimrc ~/備份/vimrc
     execute ':lcd ' . gitDir 
     "silent !git commit -am autoUpload
