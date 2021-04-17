@@ -149,11 +149,15 @@ Plug 'airblade/vim-gitgutter', { 'for': codingFT }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': codingFT[0] }
 
 " Python
-Plug 'ambv/black', { 'for': codingFT[1] }
+"Plug 'ambv/black', { 'for': codingFT[1] }
+Plug 'psf/black', { 'tag': '19.10b0', 'for': codingFT[1] }
 "Plug 'python-mode/python-mode', { 'branch': 'develop', 'for': codingFT[1] }
 
 " Jinja2
 Plug 'Glench/Vim-Jinja2-Syntax'
+
+" Rust
+Plug 'rust-lang/rust.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -198,6 +202,7 @@ let $FZF_DEFAULT_COMMAND = "rg --files --smart-case --no-ignore-vcs --hidden"
 let g:syntastic_go_checkers = ['govet', 'golint', 'errcheck']
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_post_args='--ignore=W503,E128,E225,E501,E731'
+let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 let g:syntastic_always_populate_loc_list=1
@@ -220,6 +225,9 @@ let g:pymode_python = 'python3'
 
 " gitgutter
 "set updatetime=100
+
+" Rust
+let g:rustfmt_autosave = 1
 
 
 "=============================
@@ -304,9 +312,12 @@ endif
 function! UploadGit()
     let nowDir = getcwd()
     let vimDir = fnamemodify(resolve(expand('%:p')),':h')
+    let gitDir = "~/備份/vimrc"
     execute ':lcd ' . vimDir
     echom 'nowDir:' . nowDir
     echom 'vimDir:' . vimDir
+    !mv .vimrc ~/備份/vimrc
+    execute ':lcd ' . gitDir 
     silent !git commit -am autoUpload
     silent !git push
     execute ':lcd ' . nowDir
