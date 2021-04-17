@@ -316,12 +316,11 @@ function! UploadGit()
     execute ':lcd ' . vimDir
     echom 'nowDir:' . nowDir
     echom 'vimDir:' . vimDir
-    !mv .vimrc ~/備份/vimrc
+    !cp .vimrc ~/備份/vimrc
     execute ':lcd ' . gitDir 
     !git commit -am autoUpload
     !git push
     execute ':lcd ' . nowDir
-    pause
     redraw!
 endfunction
 
