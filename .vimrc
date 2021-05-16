@@ -158,7 +158,6 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Rust
 Plug 'rust-lang/rust.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Initialize plugin system
 call plug#end()
